@@ -1,4 +1,4 @@
-package ir.digipay.cryptocurrency
+package ir.digipay.cryptocurrency.ui.currencies
 
 import android.util.Log
 import androidx.lifecycle.viewModelScope
@@ -10,13 +10,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val repo : CurrenciesRepository) : BaseViewModel() {
+class CurrenciesViewModel @Inject constructor(private val repo: CurrenciesRepository) :
+    BaseViewModel() {
 
     init {
         getData()
     }
 
-    private fun getData(){
+    private fun getData() {
         viewModelScope.launch {
             when (val result = repo.getCurrencies()) {
                 is ResultCall.Success -> {

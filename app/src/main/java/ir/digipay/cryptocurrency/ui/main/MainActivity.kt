@@ -1,7 +1,8 @@
-package ir.digipay.cryptocurrency
+package ir.digipay.cryptocurrency.ui.main
 
 import androidx.activity.viewModels
 import dagger.hilt.android.AndroidEntryPoint
+import ir.digipay.cryptocurrency.R
 import ir.digipay.cryptocurrency.base.BaseActivity
 import ir.digipay.cryptocurrency.databinding.ActivityMainBinding
 
