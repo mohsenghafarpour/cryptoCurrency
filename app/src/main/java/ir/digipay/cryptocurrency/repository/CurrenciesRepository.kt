@@ -5,6 +5,6 @@ import ir.digipay.cryptocurrency.network.ResultCall
 
 interface CurrenciesRepository {
 
-    suspend fun getCurrencies() : ResultCall<CoinMarketCapResult>
+    suspend fun getCurrencies(page : Int) : ResultCall<CoinMarketCapResult>
 
 }

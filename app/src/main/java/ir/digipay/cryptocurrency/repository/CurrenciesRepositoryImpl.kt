@@ -7,8 +7,8 @@ import ir.digipay.cryptocurrency.utils.safeApiCall
 
 class CurrenciesRepositoryImpl(private val service : CurrencyService) : CurrenciesRepository{
 
-    override suspend fun getCurrencies(): ResultCall<CoinMarketCapResult> = safeApiCall {
-        val response = service.getCurrenciesData()
+    override suspend fun getCurrencies(page : Int): ResultCall<CoinMarketCapResult> = safeApiCall {
+        val response = service.getCurrenciesData(page)
         return@safeApiCall ResultCall.Success(response)
     }
 }
