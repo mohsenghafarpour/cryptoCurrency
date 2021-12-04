@@ -5,7 +5,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.digipay.cryptocurrency.R
 import ir.digipay.cryptocurrency.base.BaseFragment
 import ir.digipay.cryptocurrency.databinding.FragmentCurrenciesBinding
-import ir.digipay.cryptocurrency.model.Currency
 import ir.digipay.cryptocurrency.utils.EndlessRecyclerViewScrollListener
 
 @AndroidEntryPoint
@@ -26,7 +25,7 @@ class CurrenciesFragment : BaseFragment<CurrenciesViewModel, FragmentCurrenciesB
         })
     }
 
-    private fun setAdapter(data: List<Currency>?) {
+    private fun setAdapter(data: List<Any>?) {
         (binding?.rvCurrencies?.adapter as? CurrenciesAdapter)?.submitList(data) ?: run {
             binding?.rvCurrencies?.adapter = CurrenciesAdapter().apply {
                 submitList(data)
