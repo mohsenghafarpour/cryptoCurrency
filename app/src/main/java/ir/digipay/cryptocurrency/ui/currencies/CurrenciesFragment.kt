@@ -5,6 +5,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import ir.digipay.cryptocurrency.R
 import ir.digipay.cryptocurrency.base.BaseFragment
 import ir.digipay.cryptocurrency.databinding.FragmentCurrenciesBinding
+import ir.digipay.cryptocurrency.model.Currency
 
 @AndroidEntryPoint
 class CurrenciesFragment : BaseFragment<CurrenciesViewModel, FragmentCurrenciesBinding>() {
@@ -15,7 +16,19 @@ class CurrenciesFragment : BaseFragment<CurrenciesViewModel, FragmentCurrenciesB
 
     override fun config() {}
 
-    override fun bindObservables() {}
+    override fun bindObservables() {
+        viewModel.currencies.observe(viewLifecycleOwner, {
+            setAdapter(it)
+        })
+    }
+
+    private fun setAdapter(data: List<Currency>?) {
+        (binding?.rvCurrencies?.adapter as? CurrenciesAdapter)?.submitList(data) ?: run {
+            binding?.rvCurrencies?.adapter = CurrenciesAdapter().apply {
+                submitList(data)
+            }
+        }
+    }
 
     override fun initBinding() {
         binding?.apply {
