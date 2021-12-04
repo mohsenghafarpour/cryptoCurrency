@@ -6,6 +6,7 @@ import ir.digipay.cryptocurrency.R
 import ir.digipay.cryptocurrency.base.BaseFragment
 import ir.digipay.cryptocurrency.databinding.FragmentCurrenciesBinding
 import ir.digipay.cryptocurrency.model.Currency
+import ir.digipay.cryptocurrency.utils.EndlessRecyclerViewScrollListener
 
 @AndroidEntryPoint
 class CurrenciesFragment : BaseFragment<CurrenciesViewModel, FragmentCurrenciesBinding>() {
@@ -14,7 +15,10 @@ class CurrenciesFragment : BaseFragment<CurrenciesViewModel, FragmentCurrenciesB
 
     override val layoutRes: Int = R.layout.fragment_currencies
 
-    override fun config() {}
+    override fun config() {
+        viewModel.getData()
+        onScrollListener()
+    }
 
     override fun bindObservables() {
         viewModel.currencies.observe(viewLifecycleOwner, {
@@ -28,6 +32,22 @@ class CurrenciesFragment : BaseFragment<CurrenciesViewModel, FragmentCurrenciesB
                 submitList(data)
             }
         }
+    }
+
+    private fun onScrollListener() {
+        binding?.rvCurrencies?.addOnScrollListener(object : EndlessRecyclerViewScrollListener() {
+            override fun onLoadMore() {
+                getNextPageData()
+            }
+
+            override fun isLoading(): Boolean {
+                return true
+            }
+        })
+    }
+
+    private fun getNextPageData() {
+        viewModel.getNextPageData()
     }
 
     override fun initBinding() {

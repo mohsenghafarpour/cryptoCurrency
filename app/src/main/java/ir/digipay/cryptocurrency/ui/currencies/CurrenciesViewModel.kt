@@ -20,20 +20,23 @@ class CurrenciesViewModel @Inject constructor(private val repo: CurrenciesReposi
     val currencies: LiveData<List<Currency>?>
         get() = _currencies
 
-    init {
-        getData()
-    }
+    private var pageSize: Int = 20
 
-    private fun getData() {
+    fun getData(page: Int = 500) {
         viewModelScope.launch {
-            when (val result = repo.getCurrencies()) {
+            when (val result = repo.getCurrencies(page)) {
                 is ResultCall.Success -> {
                     _currencies.value = result.data.data
+                    pageSize += 20
                 }
                 is ResultCall.Error -> {
                     Log.d("aaa", "error: $result")
                 }
             }
         }
+    }
+
+    fun getNextPageData() {
+        getData(pageSize)
     }
 }
