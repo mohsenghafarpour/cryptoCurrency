@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ir.digipay.cryptocurrency.R
 import ir.digipay.cryptocurrency.databinding.ItemCurrencyBinding
-import ir.digipay.cryptocurrency.databinding.ItemTitleBinding
+import ir.digipay.cryptocurrency.databinding.ItemHeaderBinding
 import ir.digipay.cryptocurrency.model.Currency
-import ir.digipay.cryptocurrency.model.Title
+import ir.digipay.cryptocurrency.model.Header
 import ir.digipay.cryptocurrency.ui.currencies.vh.CurrencyVH
-import ir.digipay.cryptocurrency.ui.currencies.vh.TitleVH
+import ir.digipay.cryptocurrency.ui.currencies.vh.HeaderVH
 import ir.digipay.cryptocurrency.utils.AdapterItemAnimator
 
 class CurrenciesAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(CurrencyDiffUtil),
@@ -21,7 +21,7 @@ class CurrenciesAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(CurrencyDiff
     override fun getItemViewType(position: Int): Int {
         return when (currentList[position]) {
             is Currency -> R.layout.item_currency
-            is Title -> R.layout.item_title
+            is Header -> R.layout.item_header
             else -> throw RuntimeException("unknown item type of ${currentList::class.java.simpleName} in ${this::class.java.name}")
         }
     }
@@ -32,7 +32,7 @@ class CurrenciesAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(CurrencyDiff
             R.layout.item_currency -> CurrencyVH(
                 ItemCurrencyBinding.inflate(inflater, parent, false)
             )
-            R.layout.item_title -> TitleVH(ItemTitleBinding.inflate(inflater, parent, false))
+            R.layout.item_header -> HeaderVH(ItemHeaderBinding.inflate(inflater, parent, false))
             else -> throw IllegalArgumentException("invalid item with view type $viewType")
         }
     }
@@ -41,7 +41,7 @@ class CurrenciesAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(CurrencyDiff
         val item = currentList[position]
         when (holder) {
             is CurrencyVH -> holder.bind(item as Currency)
-            is TitleVH -> holder.bind(item as Title)
+            is HeaderVH -> holder.bind(item as Header)
         }
         previousPosition = animateItem(previousPosition, position, holder)
     }

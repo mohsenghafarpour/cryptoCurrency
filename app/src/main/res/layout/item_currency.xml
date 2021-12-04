@@ -10,55 +10,96 @@
             type="ir.digipay.cryptocurrency.model.Currency" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_stn"
+        android:layout_marginTop="@dimen/margin_stn"
+        android:layout_marginEnd="@dimen/margin_stn"
+        app:cardElevation="@dimen/elevation_crypto_item">
 
-        <TextView
-            android:id="@+id/tv_symbol"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:text="@{item.symbol}"
-            android:textColor="@android:color/holo_red_dark"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Btc" />
+            android:paddingStart="@dimen/margin_medium"
+            android:paddingTop="24dp"
+            android:paddingEnd="@dimen/margin_medium"
+            android:paddingBottom="24dp">
 
-        <TextView
-            android:id="@+id/tv_currency_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{item.name}"
-            android:textColor="@color/black"
-            app:layout_constraintBaseline_toBaselineOf="@id/tv_symbol"
-            app:layout_constraintStart_toStartOf="@id/guideline_two"
-            tools:text="Bitcoin" />
+            <TextView
+                android:id="@+id/tv_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@{item.symbol}" />
 
-        <TextView
-            android:id="@+id/tv_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{item.quote.usd.price + ``}"
-            android:textColor="@android:color/holo_blue_dark"
-            app:layout_constraintBaseline_toBaselineOf="@id/tv_currency_name"
-            app:layout_constraintStart_toStartOf="@id/guideline"
-            tools:text="47433.16108991665" />
+            <View
+                android:id="@+id/view_symbol_divider"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/margin_stn"
+                android:background="@color/black"
+                app:layout_constraintBottom_toBottomOf="@id/tv_symbol"
+                app:layout_constraintStart_toEndOf="@id/tv_symbol"
+                app:layout_constraintTop_toTopOf="@id/tv_symbol" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".5" />
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_stn"
+                android:text="@{item.name}"
+                android:textColor="@android:color/black"
+                app:layout_constraintBottom_toBottomOf="@id/tv_symbol"
+                app:layout_constraintStart_toEndOf="@id/view_symbol_divider"
+                app:layout_constraintTop_toTopOf="@+id/tv_symbol"
+                tools:text="Bitcoin" />
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".18" />
+            <View
+                android:id="@+id/view_center_divider"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:background="@color/gray500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_symbol" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_symbol"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_symbol"
+                app:price="@{item.quote.usd.price}"
+                tools:text="6070.67$" />
+
+            <TextView
+                android:id="@+id/tv_last_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_stn"
+                android:textColor="@android:color/black"
+                app:layout_constraintStart_toStartOf="@+id/view_center_divider"
+                app:layout_constraintTop_toBottomOf="@id/view_center_divider"
+                app:percentChange="@{item.quote.usd.percentChange24h}"
+                tools:text="24h:" />
+
+            <TextView
+                android:id="@+id/tv_market_cap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                app:capMarket="@{item.quote.usd.marketCap}"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_last_update"
+                app:layout_constraintEnd_toEndOf="@+id/view_center_divider"
+                app:layout_constraintTop_toTopOf="@+id/tv_last_update"
+                tools:text="MarketCap:" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </layout>
