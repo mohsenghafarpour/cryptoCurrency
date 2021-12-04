@@ -4,7 +4,10 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ir.digipay.cryptocurrency.BuildConfig
+import ir.digipay.cryptocurrency.network.api.CurrencyService
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -17,6 +20,11 @@ object NetworkModule {
     @Provides
     fun provideOkHttp(): OkHttpClient {
         val builder = OkHttpClient.Builder()
+        if (BuildConfig.DEBUG) {
+            val log = HttpLoggingInterceptor()
+            log.level = HttpLoggingInterceptor.Level.BODY
+            builder.addInterceptor(log)
+        }
         return builder.build()
     }
 
@@ -28,6 +36,12 @@ object NetworkModule {
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCurrencyService(retrofit: Retrofit): CurrencyService {
+        return retrofit.create(CurrencyService::class.java)
     }
 
 }
