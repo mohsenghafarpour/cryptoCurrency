@@ -6,6 +6,13 @@
 
     <fragment
         android:id="@+id/frag_currencies"
-        android:name="ir.digipay.cryptocurrency.ui.currencies.CurrenciesFragment" />
+        android:name="ir.digipay.cryptocurrency.ui.currencies.CurrenciesFragment" >
+        <action
+            android:id="@+id/action_frag_currencies_to_dialog_filter"
+            app:destination="@id/dialog_filter" />
+    </fragment>
+    <dialog
+        android:id="@+id/dialog_filter"
+        android:name="ir.digipay.cryptocurrency.ui.filter.FilterDialog" />
 
 </navigation>

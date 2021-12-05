@@ -21,14 +21,16 @@ class CurrenciesViewModel @Inject constructor(
     val currencies: LiveData<List<Any>>
         get() = _currencies
 
+    private var cacheData = mutableListOf<Any>()
+
     private var pageSize: Int = 20
 
-    fun getData(page: Int = 20) {
+    fun getData(page: Int = 1) {
         viewModelScope.launch {
             when (val result = repo.getCurrencies(page)) {
                 is ResultCall.Success -> {
-                    _currencies.value = mapper.map(result.data.data)
-                    pageSize += 20
+                    cacheData = mapper.map(result.data.data, cacheData)
+                    _currencies.value = cacheData
                 }
                 is ResultCall.Error -> {
                     Log.d("aaa", "error: $result")
@@ -37,7 +39,7 @@ class CurrenciesViewModel @Inject constructor(
         }
     }
 
-    fun getNextPageData() {
-        getData(pageSize)
+    fun getNextPageData(page: Int) {
+        getData(pageSize * page)
     }
 }

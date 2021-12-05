@@ -13,4 +13,35 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="full_screen_dialog" parent="Theme.MaterialComponents.Dialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <style name="ChipItemStyle" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="checkedIconVisible">true</item>
+        <item name="checkedIconTint">@android:color/white</item>
+        <item name="chipBackgroundColor">@color/purple_200</item>
+    </style>
+
+    <style name="BottomSheetTopLine">
+        <item name="android:layout_width">@dimen/width_dialog_top_line</item>
+        <item name="android:layout_height">@dimen/height_dialog_top_line</item>
+        <item name="android:layout_marginTop">@dimen/margin_top_dialog_top_line_</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:background">@drawable/shape_dialog</item>
+    </style>
+
+    <style name="DialogTitleTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/size_dialog_title_text</item>
+    </style>
+
 </resources>
