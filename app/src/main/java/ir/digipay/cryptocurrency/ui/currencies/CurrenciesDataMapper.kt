@@ -4,9 +4,9 @@ import ir.digipay.cryptocurrency.model.Header
 
 class CurrenciesDataMapper {
 
-    fun map(data: List<Any>): List<Any> {
-        val items = mutableListOf<Any>()
-        items.add(Header("Coin Market Caps"))
+    fun map(data: List<Any>, cacheData: List<Any>): MutableList<Any> {
+        val items = mutableListOf(*cacheData.toTypedArray())
+        if (items.isNullOrEmpty()) items.add(Header())
         items.addAll(data)
         return items
     }
