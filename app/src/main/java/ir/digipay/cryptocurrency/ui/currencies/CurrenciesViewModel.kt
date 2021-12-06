@@ -14,32 +14,35 @@ import javax.inject.Inject
 @HiltViewModel
 class CurrenciesViewModel @Inject constructor(
     private val repo: CurrenciesRepository,
-    private val mapper: CurrenciesDataMapper
+    private val mapper: CurrenciesDataMapper,
 ) : BaseViewModel() {
+
+    private var cacheData = mutableListOf<Any>()
 
     private val _currencies = MutableLiveData<List<Any>>()
     val currencies: LiveData<List<Any>>
         get() = _currencies
 
-    private var cacheData = mutableListOf<Any>()
-
-    private var pageSize: Int = 20
-
-    fun getData(page: Int = 1) {
+    fun getData(start: Int = 1, sort: String = "market_cap", isFilter: Boolean = false) {
+        showProgress()
         viewModelScope.launch {
-            when (val result = repo.getCurrencies(page)) {
+            when (val result = repo.getCurrencies(start, sort)) {
                 is ResultCall.Success -> {
+                    hideProgress()
+                    hideNoData()
+                    if (isFilter) {
+                        cacheData.clear()
+                        _currencies.value = emptyList()
+                    }
                     cacheData = mapper.map(result.data.data, cacheData)
                     _currencies.value = cacheData
                 }
                 is ResultCall.Error -> {
+                    hideProgress()
+                    showNoData()
                     Log.d("aaa", "error: $result")
                 }
             }
         }
-    }
-
-    fun getNextPageData(page: Int) {
-        getData(pageSize * page)
     }
 }

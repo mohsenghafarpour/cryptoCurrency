@@ -22,4 +22,8 @@
     <string name="label_sort_direction">Sort Direction</string>
     <string name="label_done">Done</string>
     <string name="label_no_result_found">No Result Found</string>
+    <string name="name">name</string>
+    <string name="percentage_change">percentage change</string>
+    <string name="retry">Retry</string>
+    <string name="no_result_found">No Result Found</string>
 </resources>

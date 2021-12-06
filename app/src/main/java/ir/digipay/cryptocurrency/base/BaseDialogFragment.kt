@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
@@ -17,6 +18,7 @@ abstract class BaseDialogFragment<VM : BaseViewModel, DB : ViewDataBinding> :
     open var binding: DB? = null
 
     var flContainer: FrameLayout? = null
+    private var dialogBox: ConstraintLayout? = null
 
     private fun init(inflater: LayoutInflater, container: ViewGroup?) {
         binding = DataBindingUtil.inflate(inflater, layoutRes, container, false)
@@ -31,6 +33,10 @@ abstract class BaseDialogFragment<VM : BaseViewModel, DB : ViewDataBinding> :
     ): View? {
         val parentLayout = inflater.inflate(R.layout.base_dialog_fragment_box, container, false)
         flContainer = parentLayout?.findViewById(R.id.fl_container)
+        dialogBox = parentLayout?.findViewById(R.id.dialog_box_parent)
+        dialogBox?.setOnClickListener {
+            dialog?.dismiss()
+        }
         // Add the container layout just like include in xml
         init(inflater, container)
         initBinding()

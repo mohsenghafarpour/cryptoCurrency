@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="ir.digipay.cryptocurrency.model.Currency" />
+            type="ir.digipay.cryptocurrency.data.pojo.CurrencyModel" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -76,7 +76,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/tv_symbol"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_symbol"
-                app:price="@{item.quote.usd.price}"
+                app:price="@{item.price}"
                 tools:text="6070.67$" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="@+id/view_center_divider"
                 app:layout_constraintTop_toBottomOf="@id/view_center_divider"
-                app:percentChange="@{item.quote.usd.percentChange24h}"
+                app:percentChange="@{item.percentChange}"
                 tools:text="24h:" />
 
             <TextView
@@ -95,7 +95,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@android:color/black"
-                app:capMarket="@{item.quote.usd.marketCap}"
+                app:capMarket="@{item.marketCap}"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_last_update"
                 app:layout_constraintEnd_toEndOf="@+id/view_center_divider"
                 app:layout_constraintTop_toTopOf="@+id/tv_last_update"

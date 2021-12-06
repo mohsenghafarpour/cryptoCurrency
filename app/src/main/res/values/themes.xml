@@ -23,11 +23,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="checkedIconVisible">true</item>
+        <item name="android:textColor">@color/white</item>
         <item name="checkedIconTint">@android:color/white</item>
-        <item name="chipBackgroundColor">@color/purple_200</item>
+        <item name="chipBackgroundColor">@color/purple_400</item>
     </style>
 
-    <style name="BottomSheetTopLine">
+    <style name="DialogTopLine">
         <item name="android:layout_width">@dimen/width_dialog_top_line</item>
         <item name="android:layout_height">@dimen/height_dialog_top_line</item>
         <item name="android:layout_marginTop">@dimen/margin_top_dialog_top_line_</item>
@@ -42,6 +43,11 @@
         <item name="android:textStyle">bold</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/size_dialog_title_text</item>
+    </style>
+
+    <style name="noDataViewButton">
+        <item name="android:textColor">@drawable/button_text_color</item>
+        <item name="android:background">@drawable/button_bg</item>
     </style>
 
 </resources>

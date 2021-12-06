@@ -6,13 +6,27 @@
 
     <fragment
         android:id="@+id/frag_currencies"
-        android:name="ir.digipay.cryptocurrency.ui.currencies.CurrenciesFragment" >
+        android:name="ir.digipay.cryptocurrency.ui.currencies.CurrenciesFragment">
         <action
             android:id="@+id/action_frag_currencies_to_dialog_filter"
             app:destination="@id/dialog_filter" />
+        <action
+            android:id="@+id/action_frag_currencies_to_frag_coin_details"
+            app:destination="@id/frag_coin_details">
+            <argument
+                android:name="currency"
+                app:argType="ir.digipay.cryptocurrency.data.pojo.CurrencyModel" />
+        </action>
     </fragment>
     <dialog
         android:id="@+id/dialog_filter"
         android:name="ir.digipay.cryptocurrency.ui.filter.FilterDialog" />
+    <fragment
+        android:id="@+id/frag_coin_details"
+        android:name="ir.digipay.cryptocurrency.ui.detail.CoinDetailsFragment">
+        <argument
+            android:name="currency"
+            app:argType="ir.digipay.cryptocurrency.data.pojo.CurrencyModel" />
+    </fragment>
 
 </navigation>

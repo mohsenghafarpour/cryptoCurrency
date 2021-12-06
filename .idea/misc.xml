@@ -4,14 +4,21 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.246875" />
+        <entry key="app/src/main/res/drawable/button_bg.xml" value="0.38796296296296295" />
+        <entry key="app/src/main/res/drawable/button_text_color.xml" value="0.38796296296296295" />
+        <entry key="app/src/main/res/drawable/center_tab_item_unselected_transparent.xml" value="0.38796296296296295" />
+        <entry key="app/src/main/res/drawable/center_tab_rounded_item_selected.xml" value="0.38796296296296295" />
         <entry key="app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.246875" />
         <entry key="app/src/main/res/drawable/ic_filter.xml" value="0.337037037037037" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.246875" />
         <entry key="app/src/main/res/drawable/shape_dialog.xml" value="0.337037037037037" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/base_dialog_fragment_box.xml" value="0.40520833333333334" />
+        <entry key="app/src/main/res/layout/cv_no_data.xml" value="0.3435185185185185" />
         <entry key="app/src/main/res/layout/cv_nodata_view.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/dialog_filter.xml" value="0.40520833333333334" />
+        <entry key="app/src/main/res/layout/fragment_coin_detail.xml" value="0.40520833333333334" />
+        <entry key="app/src/main/res/layout/fragment_coin_details.xml" value="0.3435185185185185" />
         <entry key="app/src/main/res/layout/fragment_currencies.xml" value="0.23072916666666668" />
         <entry key="app/src/main/res/layout/item_currency.xml" value="0.29259259259259257" />
         <entry key="app/src/main/res/layout/item_header.xml" value="0.23072916666666668" />

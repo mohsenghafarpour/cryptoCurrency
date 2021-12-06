@@ -31,6 +31,13 @@
             app:srcCompat="@drawable/ic_filter"
             app:tint="@color/white" />
 
+        <ir.digipay.cryptocurrency.cv.NoDataView
+            android:id="@+id/cv_no_data"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:isVisibleNoData="@{vm.isVisibleNoData}"
+            app:loading="@{vm.showLoading}" />
+
     </FrameLayout>
 
 </layout>

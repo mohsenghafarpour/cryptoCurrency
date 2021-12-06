@@ -5,22 +5,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ir.digipay.cryptocurrency.R
+import ir.digipay.cryptocurrency.data.pojo.CurrencyModel
 import ir.digipay.cryptocurrency.databinding.ItemCurrencyBinding
 import ir.digipay.cryptocurrency.databinding.ItemHeaderBinding
-import ir.digipay.cryptocurrency.model.Currency
 import ir.digipay.cryptocurrency.model.Header
 import ir.digipay.cryptocurrency.ui.currencies.vh.CurrencyVH
 import ir.digipay.cryptocurrency.ui.currencies.vh.HeaderVH
 import ir.digipay.cryptocurrency.utils.AdapterItemAnimator
 
-class CurrenciesAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(CurrencyDiffUtil),
+class CurrenciesAdapter(private val onItemClicked: (CurrencyModel) -> Unit) :
+    ListAdapter<Any, RecyclerView.ViewHolder>(CurrencyDiffUtil),
     AdapterItemAnimator {
 
     private var previousPosition = 0
 
     override fun getItemViewType(position: Int): Int {
         return when (currentList[position]) {
-            is Currency -> R.layout.item_currency
+            is CurrencyModel -> R.layout.item_currency
             is Header -> R.layout.item_header
             else -> throw RuntimeException("unknown item type of ${currentList::class.java.simpleName} in ${this::class.java.name}")
         }
@@ -30,7 +31,7 @@ class CurrenciesAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(CurrencyDiff
         val inflater = LayoutInflater.from(parent.context)
         return when (viewType) {
             R.layout.item_currency -> CurrencyVH(
-                ItemCurrencyBinding.inflate(inflater, parent, false)
+                ItemCurrencyBinding.inflate(inflater, parent, false), onItemClicked
             )
             R.layout.item_header -> HeaderVH(ItemHeaderBinding.inflate(inflater, parent, false))
             else -> throw IllegalArgumentException("invalid item with view type $viewType")
@@ -40,7 +41,7 @@ class CurrenciesAdapter : ListAdapter<Any, RecyclerView.ViewHolder>(CurrencyDiff
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = currentList[position]
         when (holder) {
-            is CurrencyVH -> holder.bind(item as Currency)
+            is CurrencyVH -> holder.bind(item as CurrencyModel)
             is HeaderVH -> holder.bind(item as Header)
         }
         previousPosition = animateItem(previousPosition, position, holder)
