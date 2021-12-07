@@ -1,7 +1,7 @@
 package ir.digipay.cryptocurrency.ui.currencies
 
-import ir.digipay.cryptocurrency.data.pojo.CurrencyModel
 import ir.digipay.cryptocurrency.model.Currency
+import ir.digipay.cryptocurrency.model.CurrencyModel
 import ir.digipay.cryptocurrency.model.Header
 
 class CurrenciesDataMapper {
@@ -9,7 +9,7 @@ class CurrenciesDataMapper {
     fun map(data: List<Currency>, cacheData: List<Any>): MutableList<Any> {
         val items = mutableListOf(*cacheData.toTypedArray())
         if (items.isNullOrEmpty()) items.add(Header())
-        val newMappedUniqueData = data.mapIndexed { index, currency ->
+        val newMappedUniqueData = data.map { currency ->
             CurrencyModel(
                 id = currency.id,
                 name = currency.name,

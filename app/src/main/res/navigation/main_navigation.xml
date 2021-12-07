@@ -12,10 +12,14 @@
             app:destination="@id/dialog_filter" />
         <action
             android:id="@+id/action_frag_currencies_to_frag_coin_details"
-            app:destination="@id/frag_coin_details">
+            app:destination="@id/frag_coin_details"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out">
             <argument
                 android:name="currency"
-                app:argType="ir.digipay.cryptocurrency.data.pojo.CurrencyModel" />
+                app:argType="ir.digipay.cryptocurrency.model.CurrencyModel" />
         </action>
     </fragment>
     <dialog
@@ -26,7 +30,7 @@
         android:name="ir.digipay.cryptocurrency.ui.detail.CoinDetailsFragment">
         <argument
             android:name="currency"
-            app:argType="ir.digipay.cryptocurrency.data.pojo.CurrencyModel" />
+            app:argType="ir.digipay.cryptocurrency.model.CurrencyModel" />
     </fragment>
 
 </navigation>

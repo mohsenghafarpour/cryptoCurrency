@@ -6,8 +6,8 @@ import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
 import ir.digipay.cryptocurrency.R
 import ir.digipay.cryptocurrency.base.BaseFragment
-import ir.digipay.cryptocurrency.data.pojo.CurrencyModel
 import ir.digipay.cryptocurrency.databinding.FragmentCurrenciesBinding
+import ir.digipay.cryptocurrency.model.CurrencyModel
 import ir.digipay.cryptocurrency.ui.main.MainViewModel
 import ir.digipay.cryptocurrency.utils.EndlessRecyclerViewScrollListener
 import ir.digipay.cryptocurrency.utils.QueryParams
@@ -31,18 +31,18 @@ class CurrenciesFragment : BaseFragment<CurrenciesViewModel, FragmentCurrenciesB
     }
 
     override fun bindObservables() {
-        viewModel.currencies.observe(viewLifecycleOwner, {
-            setAdapter(it)
-        })
+        if (!viewModel.currencies.hasObservers())
+            viewModel.currencies.observe(viewLifecycleOwner, {
+                setAdapter(it)
+            })
 
         sharedViewModel.queryParams.observe(viewLifecycleOwner, {
             viewModel.clearCacheData()
+            binding?.rvCurrencies?.smoothScrollToPosition(0)
             viewModel.updateQueryParams(it.toBuilder().addStart(1).build())
         })
-
     }
 
-    // TODO: 12/6/21 check notify data  set change
     private fun setAdapter(data: List<Any>?) {
         if (binding?.rvCurrencies?.adapter == null)
             binding?.rvCurrencies?.adapter = CurrenciesAdapter(::navigateToDetail)

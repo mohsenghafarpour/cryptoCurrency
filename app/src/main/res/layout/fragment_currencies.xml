@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="vm"
             type="ir.digipay.cryptocurrency.ui.currencies.CurrenciesViewModel" />
@@ -18,7 +20,8 @@
             android:id="@+id/rv_currencies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager=".ui.currencies.SafeLinearLayoutManager"
+            android:visibility="@{vm.isShowContent ? View.VISIBLE : View.GONE}"
+            app:layoutManager=".utils.SafeLinearLayoutManager"
             tools:listitem="@layout/item_currency" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -28,6 +31,7 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/margin_medium"
             android:contentDescription="@string/filter"
+            android:visibility="@{vm.isShowContent ? View.VISIBLE : View.GONE}"
             app:srcCompat="@drawable/ic_filter"
             app:tint="@color/white" />
 

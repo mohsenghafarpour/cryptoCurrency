@@ -3,7 +3,7 @@ package ir.digipay.cryptocurrency.ui.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import ir.digipay.cryptocurrency.base.BaseViewModel
-import ir.digipay.cryptocurrency.data.pojo.CurrencyModel
+import ir.digipay.cryptocurrency.model.CurrencyModel
 
 
 class CoinDetailsViewModel : BaseViewModel() {

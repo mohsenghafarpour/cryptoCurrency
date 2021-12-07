@@ -1,30 +1,19 @@
 <resources>
     <string name="app_name">cryptocurrency</string>
     <string name="symbol">Symbol</string>
-    <string name="currency_name">Currency Name</string>
     <string name="value">Value</string>
     <string name="filter">filter</string>
-    <string name="title_sort_and_filter">Sort and Filter</string>
     <string name="label_sort_by">Sort By</string>
     <string name="label_market_cap">Market Cap</string>
     <string name="label_name">Name</string>
     <string name="label_price">Price</string>
-    <string name="label_filter_by">Filter By</string>
-    <string name="label_crypto_type">Crypto Type</string>
-    <string name="label_all">All</string>
-    <string name="label_coins">Coins</string>
-    <string name="label_tokens">Tokens</string>
-    <string name="label_tag_type">Tag Type</string>
-    <string name="label_file_sharing">File Sharing</string>
-    <string name="label_defi">Defi</string>
     <string name="label_ascending">Ascending</string>
     <string name="label_descending">Descending</string>
     <string name="label_sort_direction">Sort Direction</string>
+    <string name="label_circulating_supply">Circulating Supply</string>
     <string name="label_done">Done</string>
-    <string name="label_no_result_found">No Result Found</string>
     <string name="name">name</string>
     <string name="percentage_change">percentage change</string>
     <string name="retry">Retry</string>
-    <string name="no_result_found">No Result Found</string>
-    <string name="circulating_supply">Circulating Supply</string>
+    <string name="problem_connection">There is a problem connecting.\n Please try again</string>
 </resources>

@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ir.digipay.cryptocurrency.R
-import ir.digipay.cryptocurrency.data.pojo.CurrencyModel
+import ir.digipay.cryptocurrency.model.CurrencyModel
 import ir.digipay.cryptocurrency.databinding.ItemCurrencyBinding
 import ir.digipay.cryptocurrency.databinding.ItemHeaderBinding
 import ir.digipay.cryptocurrency.model.Header

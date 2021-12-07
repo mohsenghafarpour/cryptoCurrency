@@ -1,7 +1,7 @@
 package ir.digipay.cryptocurrency.ui.currencies
 
 import androidx.recyclerview.widget.DiffUtil
-import ir.digipay.cryptocurrency.data.pojo.CurrencyModel
+import ir.digipay.cryptocurrency.model.CurrencyModel
 import ir.digipay.cryptocurrency.model.Header
 
 object CurrencyDiffUtil : DiffUtil.ItemCallback<Any>() {

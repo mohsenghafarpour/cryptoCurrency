@@ -67,12 +67,12 @@ class FilterDialog : BaseDialogFragment<MainViewModel, DialogFilterBinding>() {
 
     private fun translate(value: String?): String? {
         return when (value) {
-            "Ascending" -> "asc"
-            "Descending" -> "desc"
-            "Price" -> "price"
-            "Name" -> "name"
-            "Market Cap" -> "market_cap"
-            "Circulating Supply" -> "circulating_supply"
+            context?.getString(R.string.label_ascending) -> "asc"
+            context?.getString(R.string.label_descending) -> "desc"
+            context?.getString(R.string.label_price) -> "price"
+            context?.getString(R.string.label_name) -> "name"
+            context?.getString(R.string.label_market_cap) -> "market_cap"
+            context?.getString(R.string.label_circulating_supply) -> "circulating_supply"
             else -> value
         }
     }

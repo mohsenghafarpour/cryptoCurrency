@@ -2,7 +2,7 @@ package ir.digipay.cryptocurrency.ui.currencies.vh
 
 import androidx.recyclerview.widget.RecyclerView
 import ir.digipay.cryptocurrency.BR
-import ir.digipay.cryptocurrency.data.pojo.CurrencyModel
+import ir.digipay.cryptocurrency.model.CurrencyModel
 import ir.digipay.cryptocurrency.databinding.ItemCurrencyBinding
 
 class CurrencyVH(

@@ -39,7 +39,7 @@
             <com.google.android.material.chip.Chip
                 android:id="@+id/circulating_supply"
                 style="@style/ChipItemStyle"
-                android:text="@string/circulating_supply" />
+                android:text="@string/label_circulating_supply" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chip_name"

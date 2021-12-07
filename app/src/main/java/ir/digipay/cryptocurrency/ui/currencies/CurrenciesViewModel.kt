@@ -25,12 +25,17 @@ class CurrenciesViewModel @Inject constructor(
     val currencies: LiveData<List<Any>>
         get() = _currencies
 
+    private val _isShowContent = MutableLiveData<Boolean>()
+    val isShowContent: LiveData<Boolean>
+        get() = _isShowContent
+
     fun getData(queryParams: QueryParams? = null) {
         showProgress()
         viewModelScope.launch {
             when (val result =
                 repo.getCurrencies(queryParams ?: this@CurrenciesViewModel.queryParams)) {
                 is ResultCall.Success -> {
+                    _isShowContent.value = true
                     hideProgress()
                     hideNoData()
                     cacheData = mapper.map(result.data.data, cacheData)
@@ -39,6 +44,7 @@ class CurrenciesViewModel @Inject constructor(
                 is ResultCall.Error -> {
                     hideProgress()
                     showNoData()
+                    _isShowContent.value = false
                 }
             }
         }

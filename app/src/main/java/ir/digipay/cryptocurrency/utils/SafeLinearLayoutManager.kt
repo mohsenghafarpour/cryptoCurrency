@@ -1,11 +1,10 @@
-package ir.digipay.cryptocurrency.ui.currencies
+package ir.digipay.cryptocurrency.utils
 
 import android.content.Context
 import android.util.AttributeSet
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Recycler
-import java.lang.IndexOutOfBoundsException
 
 
 class SafeLinearLayoutManager : LinearLayoutManager {
