@@ -26,4 +26,5 @@
     <string name="percentage_change">percentage change</string>
     <string name="retry">Retry</string>
     <string name="no_result_found">No Result Found</string>
+    <string name="circulating_supply">Circulating Supply</string>
 </resources>

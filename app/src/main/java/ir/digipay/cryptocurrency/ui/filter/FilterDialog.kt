@@ -2,13 +2,13 @@ package ir.digipay.cryptocurrency.ui.filter
 
 import android.util.DisplayMetrics
 import android.view.ViewAnimationUtils
-import androidx.core.view.forEach
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.chip.Chip
 import ir.digipay.cryptocurrency.R
 import ir.digipay.cryptocurrency.base.BaseDialogFragment
 import ir.digipay.cryptocurrency.databinding.DialogFilterBinding
 import ir.digipay.cryptocurrency.ui.main.MainViewModel
+import ir.digipay.cryptocurrency.utils.QueryParams
 
 class FilterDialog : BaseDialogFragment<MainViewModel, DialogFilterBinding>() {
 
@@ -33,39 +33,51 @@ class FilterDialog : BaseDialogFragment<MainViewModel, DialogFilterBinding>() {
 
     private fun doneClicked() {
         binding?.fabDone?.setOnClickListener {
-            checkingSort()
-            checkingSortDir()
+            val queryParamsBuilder = QueryParams.Builder()
+            val sortCriteria = getSortCriteria()
+            if (sortCriteria != null)
+                queryParamsBuilder.addSort(sortCriteria)
+            val sortDirCriteria = getSortDirCriteria()
+            if (sortDirCriteria != null)
+                queryParamsBuilder.addSortDir(sortDirCriteria)
+            viewModel.queryParams.value = queryParamsBuilder.build()
             dialog?.dismiss()
         }
     }
 
-    private fun checkingSort() {
-        binding?.chGroupSortBy?.forEach { chip ->
-            if ((chip as Chip).isChecked) {
-                viewModel.sortValue.value = chip.text.toString().lowercase()
-                changeValueToApiKey(chip.text.toString())
-            }
+    private fun getSortCriteria(): String? {
+        val checkedChipId = binding?.chGroupSortBy?.checkedChipId
+        if (checkedChipId != null) {
+            val checkedChipValue =
+                binding?.chGroupSortBy?.findViewById<Chip>(checkedChipId)?.text?.toString()
+            return translate(checkedChipValue)
         }
+        return null
     }
 
-    private fun checkingSortDir() {
-        binding?.chGroupSortDirection?.forEach { chip ->
-            if ((chip as Chip).isChecked) {
-                viewModel.sortDirValue.value = chip.text.toString().lowercase()
-                changeValueToApiKey(chip.text.toString())
-            }
+    private fun getSortDirCriteria(): String? {
+        val checkedChipId = binding?.chGroupSortDirection?.checkedChipId
+        if (checkedChipId != null) {
+            val checkedChipValue =
+                binding?.chGroupSortDirection?.findViewById<Chip>(checkedChipId)?.text?.toString()
+            return translate(checkedChipValue)
         }
+        return null
     }
 
-    private fun changeValueToApiKey(value: String): String {
+    private fun translate(value: String?): String? {
         return when (value) {
             "Ascending" -> "asc"
             "Descending" -> "desc"
             "Price" -> "price"
-            else -> "name"
+            "Name" -> "name"
+            "Market Cap" -> "market_cap"
+            "Circulating Supply" -> "circulating_supply"
+            else -> value
         }
     }
 
+    // TODO: 12/7/21 change default display
     private fun setAnimationToOpenDialog() {
         dialog?.setOnShowListener {
             val view = dialog?.window?.decorView

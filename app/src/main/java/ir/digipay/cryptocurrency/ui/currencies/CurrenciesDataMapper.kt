@@ -9,7 +9,7 @@ class CurrenciesDataMapper {
     fun map(data: List<Currency>, cacheData: List<Any>): MutableList<Any> {
         val items = mutableListOf(*cacheData.toTypedArray())
         if (items.isNullOrEmpty()) items.add(Header())
-        items.addAll(data.mapIndexed { index, currency ->
+        val newMappedUniqueData = data.mapIndexed { index, currency ->
             CurrencyModel(
                 id = currency.id,
                 name = currency.name,
@@ -18,9 +18,11 @@ class CurrenciesDataMapper {
                 marketCap = currency.quote.usd.marketCap,
                 icon = null,
                 percentChange = currency.quote.usd.percentChange24h,
-                sortOrder = index + items.size
+                sortOrder = 0
             )
-        })
+        }.filter { !items.contains(it) }
+        if (newMappedUniqueData.isNotEmpty())
+            items.addAll(newMappedUniqueData)
         return items
     }
 }

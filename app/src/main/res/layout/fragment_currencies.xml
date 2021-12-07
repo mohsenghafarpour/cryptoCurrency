@@ -18,7 +18,7 @@
             android:id="@+id/rv_currencies"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutManager=".ui.currencies.SafeLinearLayoutManager"
             tools:listitem="@layout/item_currency" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -36,7 +36,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:isVisibleNoData="@{vm.isVisibleNoData}"
-            app:loading="@{vm.showLoading}" />
+            app:loading="@{vm.showLoading}"
+            tools:visibility="gone" />
 
     </FrameLayout>
 

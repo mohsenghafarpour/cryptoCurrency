@@ -30,8 +30,10 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
+            android:contentDescription="@{vm.currency.name}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/lottie_currency"
+            app:loadImage="@{}"
             tools:srcCompat="@tools:sample/avatars" />
 
         <TextView

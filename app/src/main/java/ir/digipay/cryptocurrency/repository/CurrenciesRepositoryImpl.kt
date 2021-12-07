@@ -14,9 +14,8 @@ class CurrenciesRepositoryImpl @Inject constructor(
     private val currenciesDB: CurrenciesDB
 ) : CurrenciesRepository {
 
-    override suspend fun getCurrencies(start: Int, sort: String): ResultCall<CoinMarketCapResult> =
+    override suspend fun getCurrencies(queryParams: QueryParams): ResultCall<CoinMarketCapResult> =
         safeApiCall {
-            val queryParams = QueryParams.Builder().addStart(start).addSort(sort).build()
             val response = service.getCurrenciesData(queryParams.data)
             return@safeApiCall ResultCall.Success(response)
         }
